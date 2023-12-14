@@ -45,58 +45,59 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className='relative h-[100vh] w-[50%] bg-[#00000066]'>
-      <Container maxWidth='sm' className='im absolute left-[50%] top-[50%] '>
-        <div className='flex flex-col gap-10 p-8'>
-          <Controller
-            name='username'
-            defaultValue=''
-            control={control}
-            rules={{
-              required: 'Tên tài khoản không được để trống',
-            }}
-            render={({ field, fieldState: { error } }) => (
-              <TextField
-                sx={{
-                  backgroundColor: 'red',
-                  borderRadius: '5px',
-                }}
-                {...field}
-                fullWidth
-                size='medium'
-                variant='filled'
-                label='Tên tài khoản'
-                error={!!error}
-                helperText={error?.message}
-              />
-            )}
-          />
-          <Controller
-            name='password'
-            defaultValue=''
-            control={control}
-            rules={{
-              required: 'Mật khẩu không được để trống',
-            }}
-            render={({ field, fieldState: { error } }) => (
-              <InputPassword
-                {...field}
-                fullWidth
-                size='medium'
-                variant='filled'
-                label='Mật khẩu'
-                onKeyDown={handleKeyDown}
-                error={!!error}
-                helperText={error?.message}
-              />
-            )}
-          />
+    <div className='h-[100vh] w-[100%] bg-[#00000066]'>
+      <Paper>
+        <Container maxWidth='sm' className='im'>
+          <div className='flex flex-col gap-10 p-8'>
+            <Controller
+              name='username'
+              defaultValue=''
+              control={control}
+              rules={{
+                required: 'Tên tài khoản không được để trống',
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <TextField
+                  sx={{
+                    borderRadius: '5px',
+                  }}
+                  {...field}
+                  fullWidth
+                  size='medium'
+                  variant='outlined'
+                  label='Tên tài khoản'
+                  error={!!error}
+                  helperText={error?.message}
+                />
+              )}
+            />
+            <Controller
+              name='password'
+              defaultValue=''
+              control={control}
+              rules={{
+                required: 'Mật khẩu không được để trống',
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <InputPassword
+                  {...field}
+                  fullWidth
+                  size='medium'
+                  variant='outlined'
+                  label='Mật khẩu'
+                  onKeyDown={handleKeyDown}
+                  error={!!error}
+                  helperText={error?.message}
+                />
+              )}
+            />
 
-          <LoadingButton fullWidth variant='contained' loading={isPending} onClick={handleClickSubmit}>
-            Đăng nhập
-          </LoadingButton>
-        </div>
-      </Container>
+            <LoadingButton fullWidth variant='contained' loading={isPending} onClick={handleClickSubmit}>
+              Đăng nhập
+            </LoadingButton>
+          </div>
+        </Container>
+      </Paper>
     </div>
   );
 };
