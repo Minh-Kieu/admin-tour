@@ -31,8 +31,8 @@ const Header = () => {
         PaperProps={{ style: { width: '280px', padding: '8px 16px' } }}
       >
         <div className='flex h-[56px] items-center justify-center'>
-          <Link to={privateRoute.home.path}>
-            <span className='text-2xl font-bold text-red-500 hover:text-red-700'>HẬU ĐÀI</span>
+          <Link to={privateRoute.tours.path}>
+            <span className='text-xl font-bold text-red-500 hover:text-red-700'>Tours & Hotel</span>
           </Link>
         </div>
         <AppMenu />

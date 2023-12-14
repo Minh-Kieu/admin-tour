@@ -1,4 +1,4 @@
-import { ArrowDropDown, ArrowLeft, SettingsOutlined } from '@mui/icons-material';
+import { ArrowDropDown, ArrowLeft, SettingsOutlined, MeetingRoom, Tour } from '@mui/icons-material';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import { styled } from '@mui/system';
 import { useState } from 'react';
@@ -70,7 +70,8 @@ const MenuItem = ({ path, name, icon, items }: MenuItemProps) => {
 const Menu = () => {
   return (
     <List className='flex flex-col gap-1'>
-      <MenuItem {...privateRoute.home} icon={<SettingsOutlined />} />
+      <MenuItem {...privateRoute.tours} icon={<Tour />} />
+      <MenuItem {...privateRoute.hotels} icon={<MeetingRoom />} />
     </List>
   );
 };

@@ -34,3 +34,8 @@ type CommonRecordType = {
   createdAt: string;
   updatedAt: string;
 };
+
+type ErrorResponse = {
+  name: string;
+  message: string;
+};

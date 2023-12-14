@@ -1,10 +1,16 @@
-import { Home } from 'views/Home';
+import { Tours } from 'views/Tours';
+import { Hotels } from 'views/Hotels';
 
 const privateRoute = {
-  home: {
-    path: '/home',
-    name: 'Cài đặt Trang chủ',
-    component: <Home />,
+  tours: {
+    path: '/tours',
+    name: 'Tours',
+    component: <Tours />,
+  },
+  hotels: {
+    path: '/hotels',
+    name: 'Hotels',
+    component: <Hotels />,
   },
 };
 

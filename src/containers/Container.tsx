@@ -18,12 +18,12 @@ const Container = ({ children }: ContainerType) => {
 
   useEffect(() => {
     try {
-      const profile = JSON.parse(localStorage.getItem('profile')!);
-      const { exp }: { exp: number } = jwtDecode(profile.accessToken);
-      if (Date.now() / 1000 < exp - 600) {
-        jwtDecode(profile.accessToken);
-        dispatch(signIn(profile));
-      }
+      // const profile = JSON.parse(localStorage.getItem('profile')!);
+      // const { exp }: { exp: number } = jwtDecode(profile.accessToken);
+      // if (Date.now() / 1000 < exp - 600) {
+      //   jwtDecode(profile.accessToken);
+      //   dispatch(signIn(profile));
+      // }
     } catch {
     } finally {
       setIsReady(true);

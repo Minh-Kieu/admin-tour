@@ -10,19 +10,24 @@ const AuthLayout = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigator(privateRoute.home.path, { replace: true });
+      navigator(privateRoute.tours.path, { replace: true });
     }
   }, [isLoggedIn, navigator]);
 
   return (
-    <main className='flex items-center justify-center'>
+    <div
+      className='flex h-[100vh]'
+      style={{
+        background: `#0a0a0a url(${require('assets/bg/Travel-Bg.png')}) no-repeat center / cover`,
+      }}
+    >
       <Routes>
         {Object.values(authRoute).map(({ path, component: Element }) => (
           <Route key={path} path={path} element={<Element />} />
         ))}
         <Route path='/*' element={<Navigate to={authRoute.login.path} />} />
       </Routes>
-    </main>
+    </div>
   );
 };
 

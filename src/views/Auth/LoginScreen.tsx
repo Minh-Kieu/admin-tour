@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signIn, signOut } from 'reducers/profileSlice';
 import { authRoute } from 'routes';
-import { authService, userService } from 'services';
+import { authService } from 'services';
 import { RoleEnum } from 'utils/enum';
 
 const LoginScreen = () => {
@@ -20,15 +20,15 @@ const LoginScreen = () => {
   const { mutate: login, isPending } = useMutation({
     mutationFn: authService.login,
     onSuccess: (data: LoginResponse) => {
-      dispatch(signIn(data));
-      userService.getProfile().then((profile) => {
-        if (profile.role === RoleEnum.ADMIN) {
-          dispatch(signIn(profile));
-        } else {
-          enqueueSnackbar('Please login to continue as an Administrator', { variant: 'error' });
-          dispatch(signOut({}));
-        }
-      });
+      dispatch(signIn({}));
+      // userService.getProfile().then((profile) => {
+      //   if (profile.role === RoleEnum.ADMIN) {
+      //     dispatch(signIn(profile));
+      //   } else {
+      //     enqueueSnackbar('Please login to continue as an Administrator', { variant: 'error' });
+      //     dispatch(signOut({}));
+      //   }
+      // });
     },
   });
 
@@ -45,58 +45,59 @@ const LoginScreen = () => {
   };
 
   return (
-    <Container maxWidth='sm'>
-      <Paper className='flex flex-col gap-10 p-8'>
-        <Controller
-          name='username'
-          defaultValue=''
-          control={control}
-          rules={{
-            required: 'Tên tài khoản không được để trống',
-          }}
-          render={({ field, fieldState: { error } }) => (
-            <TextField
-              {...field}
-              fullWidth
-              variant='standard'
-              label='Tên tài khoản'
-              error={!!error}
-              helperText={error?.message}
-            />
-          )}
-        />
-        <Controller
-          name='password'
-          defaultValue=''
-          control={control}
-          rules={{
-            required: 'Mật khẩu không được để trống',
-          }}
-          render={({ field, fieldState: { error } }) => (
-            <InputPassword
-              {...field}
-              fullWidth
-              variant='standard'
-              label='Mật khẩu'
-              onKeyDown={handleKeyDown}
-              error={!!error}
-              helperText={error?.message}
-            />
-          )}
-        />
+    <div className='relative h-[100vh] w-[50%] bg-[#00000066]'>
+      <Container maxWidth='sm' className='im absolute left-[50%] top-[50%] '>
+        <div className='flex flex-col gap-10 p-8'>
+          <Controller
+            name='username'
+            defaultValue=''
+            control={control}
+            rules={{
+              required: 'Tên tài khoản không được để trống',
+            }}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                sx={{
+                  backgroundColor: 'red',
+                  borderRadius: '5px',
+                }}
+                {...field}
+                fullWidth
+                size='medium'
+                variant='filled'
+                label='Tên tài khoản'
+                error={!!error}
+                helperText={error?.message}
+              />
+            )}
+          />
+          <Controller
+            name='password'
+            defaultValue=''
+            control={control}
+            rules={{
+              required: 'Mật khẩu không được để trống',
+            }}
+            render={({ field, fieldState: { error } }) => (
+              <InputPassword
+                {...field}
+                fullWidth
+                size='medium'
+                variant='filled'
+                label='Mật khẩu'
+                onKeyDown={handleKeyDown}
+                error={!!error}
+                helperText={error?.message}
+              />
+            )}
+          />
 
-        <LoadingButton fullWidth variant='contained' loading={isPending} onClick={handleClickSubmit}>
-          Đăng nhập
-        </LoadingButton>
-
-        <div className='mt-[-20px] flex justify-center space-x-2'>
-          <span>Bạn chưa có tài khoản?</span>
-          <Link className='font-medium hover:text-primary-main' to={authRoute.register.url}>
-            Đăng ký
-          </Link>
+          <LoadingButton fullWidth variant='contained' loading={isPending} onClick={handleClickSubmit}>
+            Đăng nhập
+          </LoadingButton>
         </div>
-      </Paper>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

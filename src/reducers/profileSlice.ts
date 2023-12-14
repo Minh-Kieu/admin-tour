@@ -8,7 +8,7 @@ export const profileSlice = createSlice({
   } as ProfileRecordType,
   reducers: {
     signIn: (state, { payload }) => {
-      const profile = { ...payload, ...state, isLoggedIn: true };
+      const profile = { ...state, ...payload, isLoggedIn: true };
       localStorage.setItem('profile', JSON.stringify(profile));
       return profile;
     },

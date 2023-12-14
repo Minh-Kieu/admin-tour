@@ -25,7 +25,7 @@ const PrivateLayout = () => {
           {Object.values(privateRoute).map(({ path, component }) => (
             <Route key={path} path={path} element={component} />
           ))}
-          <Route path='*' element={<Navigate to={privateRoute.home.path} />} />
+          <Route path='*' element={<Navigate to={privateRoute.tours.path} />} />
         </Routes>
       </div>
     </main>
